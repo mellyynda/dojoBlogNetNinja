@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useHistory } from "react-router-dom";
 
 const Create = () => {
   const [title, setTitle] = useState('')
@@ -6,6 +7,8 @@ const Create = () => {
   const [author, setAuthor] = useState('yoshi')
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState(null)
+
+  const history = useHistory()
 
   const handleSubmit = e => {
     e.preventDefault()
@@ -22,6 +25,7 @@ const Create = () => {
           throw Error('Could not send data')
         }
         setIsLoading(false)
+        history.push('/')
         console.log('Created new blog.')
       })
       .catch(err => {
